@@ -33,7 +33,7 @@ Core #(
     .clk(clk),
     .rst_n(rst_n),
     .rd_en_o(rd_en),
-    .wr_en_i(wr_en),
+    .wr_en_o(wr_en),
     .data_i(data_i),
     .addr_o(addr),
     .data_o(data_o)

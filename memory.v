@@ -11,10 +11,6 @@ module Memory #(
     output wire        ack_o
 );
 
-    localparam DEPTH = MEMORY_SIZE / 4;
-    reg [31:0] memory [0:DEPTH-1];
-    integer i;
-
     initial begin
         if (MEMORY_FILE != "") begin
             $readmemh(MEMORY_FILE, memory);
@@ -22,16 +18,14 @@ module Memory #(
         end
     end
 
-    assign data_o = (rd_en_i && !wr_en_i) ? memory[addr_i[31:2]] : 32'b0;
+    reg [31:0] memory [0:MEMORY_SIZE-1];
+
+    assign data_o = (rd_en_i) ? memory[addr_i[31:2]] : 32'b0;
     assign ack_o = 1'b1; 
 
     always @(posedge clk) begin
         if (wr_en_i) begin
             memory[addr_i[31:2]] <= data_i;
-            //$display("[%0t] MEMORY WRITE @ %h <= %h", $time, addr_i, data_i);
-        end
-        if (rd_en_i) begin
-            //$display("[%0t] MEMORY READ  @ %h => %h", $time, addr_i, memory[addr_i[31:2]]);
         end
     end
 endmodule

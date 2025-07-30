@@ -1,8 +1,8 @@
-WARNING: memory.v:20: $readmemh(programa.txt): Not enough words in the file for the requested range [0:1023].
+WARNING: memory.v:16: $readmemh(programa.txt): Not enough words in the file for the requested range [0:4095].
 VCD info: dumpfile saida.vcd opened for output.
 Programa executado:
 addi x5, x0, 10                 
 srli x5, x5, 1                  
 sw x5, 16(x0)                   
-=== ERRO: Esperado 00000005 na memória, obtido xxxxxxxx
+=== OK: Obtido 00000005 na memória
 tb.v:54: $finish called at 31000 (1ps)
